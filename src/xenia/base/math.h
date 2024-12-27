@@ -14,6 +14,7 @@
 #include <cmath>
 #include <cstdint>
 #include <cstring>
+#include <climits>
 #include <limits>
 #include <numeric>
 #include <type_traits>
