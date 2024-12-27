@@ -51,7 +51,7 @@ jobs:
 #        run: ./xb lint --all
 
   build-linux:
-    name: Build (Linux, ${{ matrix.configuration }}) #  runner.os can't be used here
+    name: Build (Linux, ${{ matrix.configuration }}, LLVM${{ matrix.llvm_version }}) #  runner.os can't be used here
 #    needs: lint
     strategy:
       fail-fast: false
@@ -65,7 +65,7 @@ jobs:
           fetch-depth: 0
       - name: Set environment variables
         run: |
-          LLVM_VERSION=18
+          LLVM_VERSION=${{ matrix.llvm_version }}
           echo "LLVM_VERSION=$LLVM_VERSION" >> $GITHUB_ENV
           echo "UBUNTU_BASE=jammy" >> $GITHUB_ENV
           echo "CC=clang-${LLVM_VERSION}" >> $GITHUB_ENV
