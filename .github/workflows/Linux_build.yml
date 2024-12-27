@@ -57,14 +57,14 @@ jobs:
       fail-fast: false
       matrix:
         configuration: [Release, Debug]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@main
         with:
           fetch-depth: 0
       - name: Set environment variables
         run: |
-          LLVM_VERSION=14
+          LLVM_VERSION=19
           echo "LLVM_VERSION=$LLVM_VERSION" >> $GITHUB_ENV
           echo "UBUNTU_BASE=jammy" >> $GITHUB_ENV
           echo "CC=clang-${LLVM_VERSION}" >> $GITHUB_ENV
