@@ -171,6 +171,38 @@ dword_result_t DmGetSystemInfo_entry(pointer_t<XBDM_SYSTEM_INFO> info) {
 }
 DECLARE_XBDM_EXPORT1(DmGetSystemInfo, kDebug, kStub);
 
+dword_result_t DmSetMemory_entry(lpvoid_t dest, dword_t buf_size, lpvoid_t src,
+                                 lpdword_t bytes_written) {
+  if (!dest || !src) {
+    return XBDM_UNSUCCESSFUL;
+  }
+
+  memcpy(dest, src, buf_size);
+
+  if (bytes_written) {
+    *bytes_written = static_cast<uint32_t>(buf_size);
+  }
+
+  return XBDM_SUCCESSFUL;
+}
+DECLARE_XBDM_EXPORT1(DmSetMemory, kDebug, kImplemented);
+
+dword_result_t DmGetMemory_entry(lpvoid_t src, dword_t buf_size, lpvoid_t dest,
+                                 lpdword_t bytes_written) {
+  if (!dest || !src) {
+    return XBDM_UNSUCCESSFUL;
+  }
+
+  memcpy(dest, src, buf_size);
+
+  if (bytes_written) {
+    *bytes_written = static_cast<uint32_t>(buf_size);
+  }
+
+  return XBDM_SUCCESSFUL;
+}
+DECLARE_XBDM_EXPORT1(DmGetMemory, kDebug, kImplemented);
+
 dword_result_t DmIsFastCAPEnabled_entry() { return XBDM_UNSUCCESSFUL; }
 DECLARE_XBDM_EXPORT1(DmIsFastCAPEnabled, kDebug, kStub);
 
